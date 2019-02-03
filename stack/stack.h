@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 21:56:09 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/03 12:51:49 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/02/03 15:22:33 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int					stack_pull(t_int_stack *stack);
 int					stack_rotate(t_int_stack *stack);
 int					stack_rev_rotate(t_int_stack *stack);
 void				stack_print(t_int_stack stack);
+void				stack_deinit(t_int_stack **stack);
 
 #endif

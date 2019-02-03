@@ -10,4 +10,4 @@ file(GLOB libft
         )
 
 add_executable(push_swap main.c ${libft} stack/init_stack.c stack/stack.h
-        stack/stack_put.c stack/stack_resize.c stack/stack_pull.c stack/stack_print.c stack/stack_rotate.c stack/stack_rev_rotate.c)
+        stack/stack_put.c stack/stack_resize.c stack/stack_pull.c stack/stack_print.c stack/stack_rotate.c stack/stack_rev_rotate.c stack/stack_deinit.c)
