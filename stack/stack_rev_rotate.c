@@ -20,13 +20,12 @@ int		stack_rev_rotate(t_int_stack *stack)
 	if (stack == NULL || stack->arr == NULL)
 		return (0);
 	i = 0;
-	temp = stack->arr[stack->size - 1];
-	i = stack->size - 1;
-	while (i > 0)
+	temp = stack->arr[0];
+	while (i < stack->size - 1)
 	{
-		stack->arr[i] = stack->arr[i - 1];
-		i--;
+		stack->arr[i] = stack->arr[i + 1];
+		i++;
 	}
-	stack->arr[0] = temp;
+	stack->arr[stack->size - 1] = temp;
 	return (1);
 }

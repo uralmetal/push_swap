@@ -2,17 +2,27 @@ cmake_minimum_required(VERSION 3.13)
 project(push_swap C)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+#set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
 file(GLOB libft
         "libft/*.h"
         "libft/*.c"
         )
-add_executable(checker ${libft} stack/init_stack.c stack/stack.h
-        stack/stack_put.c stack/stack_resize.c stack/stack_pull.c
-        stack/stack_print.c stack/stack_rotate.c
-        stack/stack_rev_rotate.c stack/stack_deinit.c checker.c)
-add_executable(push_swap ${libft} stack/init_stack.c stack/stack.h
-        stack/stack_put.c stack/stack_resize.c stack/stack_pull.c
-        stack/stack_print.c stack/stack_rotate.c
-       stack/stack_rev_rotate.c stack/stack_deinit.c push_swap.c)
+file(GLOB stack
+        "stack/*.h"
+        "stack/*.c"
+        )
+
+file(GLOB push_swap_lib
+        "push_swap_lib/*.c"
+        "push_swap_lib/*.h"
+        )
+
+file(GLOB get_next_line
+        "get_next_line/*.c"
+        "get_next_line/*.h"
+        )
+
+add_executable(checker ${libft} ${stack} ${push_swap_lib} ${get_next_line}
+        checker.c )
+add_executable(push_swap ${libft} ${stack} ${push_swap_lib} push_swap.c)
