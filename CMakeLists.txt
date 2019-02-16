@@ -23,6 +23,12 @@ file(GLOB get_next_line
         "get_next_line/*.h"
         )
 
+file(GLOB push_swap_sort
+        "push_swap_sort/*.c"
+        "push_swap_sort/*.h"
+        )
+
 add_executable(checker ${libft} ${stack} ${push_swap_lib} ${get_next_line}
         checker.c )
-add_executable(push_swap ${libft} ${stack} ${push_swap_lib} push_swap.c)
+add_executable(push_swap ${libft} ${stack} ${push_swap_lib} ${push_swap_sort}
+        push_swap.c)

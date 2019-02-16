@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:16:39 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/04 15:48:44 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/02/13 10:06:23 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,18 @@ int		main(int argc, char **argv)
 		push_swap_deinit(&a, &b);
 		return (0);
 	}
+	push_swap_print("Init", a, b);
 	while(get_next_line(0, &com) > 0)
 	{
-		if (com[0] == '\0')
-			break ;
+//		if (com[0] == '\0')
+//			break ;
 		if (push_swap_handler(com, a, b) == 0)
 		{
 			ft_putendl_fd("Error", 2);
 			push_swap_deinit(&a, &b);
 			return (0);
 		}
+		push_swap_print(com, a, b);
 		ft_strdel(&com);
 	}
 	i = a->size;

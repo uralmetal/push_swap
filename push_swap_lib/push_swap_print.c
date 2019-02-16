@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 10:31:56 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/04 11:08:18 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/02/13 10:26:43 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	push_swap_print(const char *header, t_int_stack *a, t_int_stack *b)
 	i = ((a->size > b->size) ? (a->size) : (b->size)) - 1;
 	while (i > 0)
 	{
-		if (i > a->size)
+		if (i >= a->size)
 			ft_putchar(' ');
 		else
 			ft_putnbr(a->arr[i]);
 		ft_putchar(' ');
-		if (i > b->size)
+		if (i >= b->size)
 			ft_putchar(' ');
 		else
 			ft_putnbr(b->arr[i]);
