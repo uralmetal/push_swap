@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:18:02 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/15 15:27:40 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/03/15 17:05:59 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		main(int argc, char **argv)
 {
 	t_int_stack *a;
 	t_int_stack *b;
+	int debug_level = 2;
 	int *sort;
 	int i;
 	int j;
@@ -52,7 +53,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	//indexing
-	/*
 	sort = (int*)malloc(sizeof(int) * a->size);
 	ft_memcpy(sort, a->arr, sizeof(int) * a->size);
 	selection(sort, a->size);
@@ -71,10 +71,11 @@ int		main(int argc, char **argv)
 		}
 		i++;
 	}
-	 */
 	//
-//	push_swap_print("Init", a, b);
-	push_swap_sort(a, b);
-//	push_swap_print("Sort", a, b);
+	if (debug_level == 2)
+		push_swap_print("Init", a, b);
+	push_swap_sort(a, b, debug_level);
+	if (debug_level == 2)
+		push_swap_print("Sort", a, b);
 	return (0);
 }

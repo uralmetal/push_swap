@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 13:52:41 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/16 18:10:22 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/03/15 17:04:57 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_sort(t_int_stack *stack)
 	return (1);
 }
 
-void		push_swap_sort(t_int_stack *a, t_int_stack *b)
+static int sorting(t_int_stack *a, t_int_stack *b, int debug_level)
 {
 	int min;
 	int max;
@@ -42,26 +42,48 @@ void		push_swap_sort(t_int_stack *a, t_int_stack *b)
 			max = a->arr[i];
 		i++;
 	}
+	i = 0;
 	while (check_sort(a) == 0)
 	{
-		if (a->arr[a->size - 1] > a->arr[a->size - 2])
+		if (FIRST(a) == min && SECOND(a) == max)
 		{
-			push_swap_sa(a);
-			push_swap_print("sa", a, b);
-//			printf("sa\n");
+			stack_swap(a);
+			DEBUG_PRINT(debug_level, "sa");
+			i++;
 			if (check_sort(a) == 1)
-				return ;
+				break ;
 		}
-		if (a->arr[a->size - 1] == min && a->arr[a->size - 2] == max)
+		else if ((FIRST(a) == max) && (a->arr[a->size - 3] == min))
 		{
-			push_swap_sa(a);
-			push_swap_print("sa min & max", a, b);
-//			printf("sa\n");
+			stack_swap(a);
+			DEBUG_PRINT(debug_level, "sa");
+			i++;
 			if (check_sort(a) == 1)
-				return ;
+				break ;
 		}
-		push_swap_rra(a);
-		push_swap_print("rra", a, b);
-//		printf("ra\n");
+		else if (FIRST(a) > SECOND(a) && !(FIRST(a) == max && SECOND(a) == min))
+		{
+			stack_swap(a);
+			DEBUG_PRINT(debug_level, "sa");
+			i++;
+			if (check_sort(a) == 1)
+				break ;
+		}
+		stack_rev_rotate(a);
+		DEBUG_PRINT(debug_level, "rra");
+		i++;
 	}
+	return (i);
+}
+
+void		push_swap_sort(t_int_stack *a, t_int_stack *b, int debug_level)
+{
+	t_int_stack *temp;
+	int a1;
+	int a2;
+
+	//printf("%i %i %i\n", FIRST(a), SECOND(a), LAST(a));
+	//if (a->size <= 10)
+	a1 = sorting(a, b, debug_level);
+	//printf("iter %i\n", a1);
 }

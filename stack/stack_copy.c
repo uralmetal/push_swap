@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_sort.h                                   :+:      :+:    :+:   */
+/*   stack_copy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/15 11:35:22 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/15 11:35:22 by rwalder-         ###   ########.fr       */
+/*   Created: 2019/02/17 13:01:58 by rwalder-          #+#    #+#             */
+/*   Updated: 2019/02/17 13:49:09 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _PUSH_SWAP_SORT_H
-# define _PUSH_SWAP_SORT_H
+#include "stack.h"
 
-#include "../push_swap_lib/push_swap_lib.h"
-
-void	push_swap_sort(t_int_stack *a, t_int_stack *b, int debug_level);
-
-#endif //_PUSH_SWAP_SORT_H
+t_int_stack	*stack_copy(t_int_stack **dst, t_int_stack *src)
+{
+	*dst = stack_init();
+	free((*dst)->arr);
+	(*dst)->arr = (int *)malloc(sizeof(int) * (src->size + STACK_STEP));
+	ft_memcpy((*dst)->arr, src->arr, src->size * sizeof(int));
+	(*dst)->size = src->size;
+	return (*dst);
+}
