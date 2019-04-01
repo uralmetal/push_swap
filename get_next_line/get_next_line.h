@@ -23,7 +23,7 @@
 #  error BUFF_SIZE must  have > 0
 # endif
 
-# include "../libft/libft.h"
+# include "libft.h"
 
 typedef struct	s_line_buffer
 {

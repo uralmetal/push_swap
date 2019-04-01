@@ -17,7 +17,9 @@ t_int_stack	*stack_init(void)
 	t_int_stack *ret;
 
 	if ((ret = (t_int_stack*)malloc(sizeof(t_int_stack))) == NULL)
+	{
 		exit(-1);
+	}
 	if ((ret->arr = (int*)malloc(sizeof(int) * STACK_STEP)) == NULL)
 	{
 		free(ret);

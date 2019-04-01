@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:16:39 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/17 14:38:06 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/01 20:59:01 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int		main(int argc, char **argv)
 	char *com;
 
 	if (argc <= 1)
+	{
+		printf("usage: %s num_1 num_2 ...", argv[0]);
 		return (0);
+	}
 	if (push_swap_init(argc, argv, &a, &b) == 0)
 	{
 		ft_putendl_fd("Error", 2);
@@ -34,17 +37,19 @@ int		main(int argc, char **argv)
 //	push_swap_print("Init", a, b);
 	while(get_next_line(0, &com) > 0)
 	{
-//		if (com[0] == '\0')
-//			break ;
+		if (com[0] == '\0')
+			break ;
 		if (push_swap_handler(com, a, b) == 0)
 		{
 			ft_putendl_fd("Error", 2);
 			push_swap_deinit(&a, &b);
+			ft_strdel(&com);
 			return (0);
 		}
 //		push_swap_print(com, a, b);
 		ft_strdel(&com);
 	}
+	ft_strdel(&com);
 	i = a->size;
 	while (--i > 1)
 		if (a->arr[i] > a->arr[i - 1])

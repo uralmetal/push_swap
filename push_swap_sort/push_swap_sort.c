@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 13:52:41 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/03/15 17:04:57 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/03/31 16:46:36 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void		push_swap_sort(t_int_stack *a, t_int_stack *b, int debug_level)
 
 	//printf("%i %i %i\n", FIRST(a), SECOND(a), LAST(a));
 	//if (a->size <= 10)
-	a1 = sorting(a, b, debug_level);
+//	a1 = get_aver_med(a, 0, 4);
+	qs_sort_stack(a,b);
+//	qs(a->arr, 0, a->size - 1);
+	//a1 = sorting(a, b, debug_level);
 	//printf("iter %i\n", a1);
 }

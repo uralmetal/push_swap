@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 10:21:08 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/04 15:54:30 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/01 20:54:45 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ int		ft_atoi_with_err(const char *str, int *err)
 	return (ret * sign);
 }
 
+int check_dublicate(t_int_stack *a, int value)
+{
+	int i;
+
+	i = 0;
+	while (i < a->size)
+	{
+		if (value == a->arr[i++])
+			return (1);
+	}
+	return (0);
+}
+
 int			push_swap_init(int argc, char **argv, t_int_stack **a, t_int_stack **b)
 {
 	int i;
@@ -52,6 +65,8 @@ int			push_swap_init(int argc, char **argv, t_int_stack **a, t_int_stack **b)
 	{
 		temp = ft_atoi_with_err(argv[i], &err);
 		if (err)
+			return (0);
+		if (check_dublicate(*a, temp))
 			return (0);
 		stack_put(*a, temp);
 	}

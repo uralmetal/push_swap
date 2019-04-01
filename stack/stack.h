@@ -13,7 +13,7 @@
 #ifndef _STACK_H
 # define _STACK_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 
 # define STACK_STEP 1
 # if STACK_STEP < 1

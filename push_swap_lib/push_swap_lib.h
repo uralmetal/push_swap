@@ -13,7 +13,7 @@
 #ifndef _PUSH_SWAP_LIB_H
 # define _PUSH_SWAP_LIB_H
 
-# include "../stack/stack.h"
+# include "stack.h"
 # include <stdio.h>
 
 # define INT_MIN (-2147483648)

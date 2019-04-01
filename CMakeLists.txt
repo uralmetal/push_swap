@@ -4,10 +4,18 @@ project(push_swap C)
 set(CMAKE_C_STANDARD 99)
 #set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
+include_directories(.)
+include_directories(./get_next_line)
+include_directories(./libft)
+include_directories(./push_swap_lib)
+include_directories(./push_swap_sort)
+include_directories(./stack)
+
 file(GLOB libft
         "libft/*.h"
         "libft/*.c"
         )
+
 file(GLOB stack
         "stack/*.h"
         "stack/*.c"
