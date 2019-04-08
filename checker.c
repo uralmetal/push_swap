@@ -6,14 +6,16 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:16:39 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/01 20:59:01 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/04 15:41:25 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_lib/push_swap_lib.h"
+#include "push_swap_lib.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include "get_next_line/get_next_line.h"
+#include "get_next_line.h"
+
+#define CHECKER
 
 int		main(int argc, char **argv)
 {
@@ -58,7 +60,10 @@ int		main(int argc, char **argv)
 			push_swap_deinit(&a, &b);
 			return (0);
 		}
-	ft_putendl("OK");
+	if (b->size != 0)
+		ft_putendl("KO");
+	else
+		ft_putendl("OK");
 	push_swap_deinit(&a, &b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:18:02 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/01 20:43:08 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/08 09:15:34 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int		main(int argc, char **argv)
 	int *sort;
 	int i;
 	int j;
-	char *com;
 
 	if (argc <= 1)
 		return (0);

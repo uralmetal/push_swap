@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 10:20:58 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/04 15:54:09 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/04 16:26:47 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,20 @@
 
 # define INT_MIN (-2147483648)
 # define INT_MAX (2147483647)
-
+# define DEBUG_PRINT(lvl,print) DEBUG_LVL_1(lvl,print) DEBUG_LVL_2(lvl, print)
+# define DEBUG_LVL_1(lvl,print) if((lvl) == 1) {printf("%s\n", print);}
+# define DEBUG_LVL_2(lvl, print) if((lvl) == 2) {push_swap_print(print, a, b);}
+# define SA(debug_lvl) {push_swap_sa(a); DEBUG_PRINT(debug_lvl, "sa")}
+# define SB(debug_lvl) {push_swap_sb(b); DEBUG_PRINT(debug_lvl, "sb");}
+# define SS(debug_lvl) {push_swap_ss(a, b); DEBUG_PRINT(debug_lvl, "ss");}
+# define PA(debug_lvl) {push_swap_pa(a, b); DEBUG_PRINT(debug_lvl, "pa")}
+# define PB(debug_lvl) {push_swap_pb(a, b); DEBUG_PRINT(debug_lvl, "pb");}
+# define RA(debug_lvl) {push_swap_ra(a); DEBUG_PRINT(debug_lvl, "ra");}
+# define RB(debug_lvl) {push_swap_rb(b); DEBUG_PRINT(debug_lvl, "rb");}
+# define RR(debug_lvl) {push_swap_rr(a, b); DEBUG_PRINT(debug_lvl, "rr");}
+# define RRA(debug_lvl) {push_swap_rra(a); DEBUG_PRINT(debug_lvl, "rra");}
+# define RRB(debug_lvl) {push_swap_rrb(b); DEBUG_PRINT(debug_lvl, "rrb");}
+# define RRR(debug_lvl) {push_swap_rrr(a, b); DEBUG_PRINT(debug_lvl, "rrr");}
 //sa sb ss pa pb ra rb rr rra rrb rrr
 int     push_swap_init(int argc, char **argv, t_int_stack **a, t_int_stack **b);
 int 	push_swap_handler(const char *command, t_int_stack *a, t_int_stack *b);

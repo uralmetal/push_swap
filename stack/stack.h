@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 21:56:09 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/20 11:18:20 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/05 20:42:27 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # endif
 
 # define CH_NULL(x) if((x) == NULL) exit (-1);
-# define DEBUG_PRINT(lvl,print) DEBUG_LVL_1(lvl,print) DEBUG_LVL_2(lvl, print)
-# define DEBUG_LVL_1(lvl,print) if((lvl) == 1) {printf("%s\n", print);}
-# define DEBUG_LVL_2(lvl, print) if((lvl) == 2) {push_swap_print(print, a, b);}
 # define FIRST(stack) ((stack)->arr[(stack)->size - 1])
 # define SECOND(stack) ((stack)->arr[(stack)->size - 2])
+# define THIRST(stack) ((stack)->arr[(stack)->size - 3])
+# define MAX_3(s) (FIRST(s) > SECOND(s) && FIRST(s) > THIRST(s))
+# define MIN_3(s) (FIRST(s) < SECOND(s) && FIRST(s) < THIRST(s))
 # define LAST(stack) ((stack)->arr[0])
 
 typedef struct		s_int_stack
