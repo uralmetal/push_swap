@@ -6,12 +6,12 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 13:52:41 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/03 15:31:53 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/10 13:42:30 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_sort.h"
-
+/*
 static int	check_sort(t_int_stack *stack)
 {
 	int i;
@@ -24,12 +24,13 @@ static int	check_sort(t_int_stack *stack)
 		return (0);
 	return (1);
 }
-
+ */
+/*
 static int	check_sort_stack(t_int_stack *stack, int number, int rev)
 {
 	int i;
 
-	i = (number > stack->size) ? (stack->size) : (number);
+	i = (number > (int)stack->size) ? (stack->size) : (number);
 	while (--i > 1)
 		if ((rev == 0) ? (stack->arr[i] > stack->arr[i - 1])
 			: (stack->arr[i] < stack->arr[i - 1]))
@@ -44,7 +45,7 @@ static int sorting(t_int_stack *a, t_int_stack *b, int debug_level)
 {
 	int min;
 	int max;
-	int i;
+	unsigned int i;
 
 	i = 0;
 	min = a->arr[0];
@@ -90,12 +91,12 @@ static int sorting(t_int_stack *a, t_int_stack *b, int debug_level)
 	}
 	return (i);
 }
-
+*/
 void		push_swap_sort(t_int_stack *a, t_int_stack *b, int debug_level)
 {
-	t_int_stack *temp;
-	int a1;
-	int a2;
+//	t_int_stack *temp;
+//	int a1;
+//	int a2;
 
 	//printf("%i %i %i\n", FIRST(a), SECOND(a), LAST(a));
 	//if (a->size <= 10)

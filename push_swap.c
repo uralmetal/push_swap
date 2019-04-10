@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:18:02 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/08 09:15:34 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:17:15 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int		main(int argc, char **argv)
 {
 	t_int_stack *a;
 	t_int_stack *b;
-	int debug_level = 2;
+	int debug_level = 1;
 	int *sort;
-	int i;
-	int j;
+	unsigned int i;
+	unsigned int j;
 
 	if (argc <= 1)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 15:39:48 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/05 22:27:31 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/10 13:44:01 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int 	get_aver_med(t_int_stack *stack, int begin, int end)
 	int med;
 	int ret;
 
+	temp = NULL;
 	stack_copy(&temp, stack);
 	qs(temp->arr, INDEX(end,stack), INDEX(begin,stack));
 //	stack_print(*temp);
@@ -74,7 +75,7 @@ void	qs_sort_stack(t_int_stack *a, t_int_stack *b, int debug_level)
 {
 	int med;
 	int number;
-	int i;
+//	int i;
 	t_int_stack *move_number;
 
 	move_number = stack_init(); //ToDo: check sort!!!

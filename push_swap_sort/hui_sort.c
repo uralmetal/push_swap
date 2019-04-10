@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap_sort.h"
-
+/*
 void hui_sort(t_int_stack *a, t_int_stack *b, int num, int debug_level)
 {
 	int min;
@@ -59,3 +59,4 @@ void hui_sort(t_int_stack *a, t_int_stack *b, int num, int debug_level)
 		max++;
 	}
 }
+ */

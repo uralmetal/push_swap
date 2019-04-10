@@ -41,7 +41,7 @@ int		ft_atoi_with_err(const char *str, int *err)
 
 int check_dublicate(t_int_stack *a, int value)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	while (i < a->size)

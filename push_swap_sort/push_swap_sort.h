@@ -27,4 +27,5 @@ void 	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level);
 //int		qs_sort_push_max(t_int_stack *a, t_int_stack *b, int *size,
 //					  int debug_level);
 void 	hui_sort(t_int_stack *a, t_int_stack *b, int num, int debug_level);
+void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level);
 #endif //_PUSH_SWAP_SORT_H

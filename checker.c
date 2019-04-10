@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:16:39 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/04 15:41:25 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:15:03 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		main(int argc, char **argv)
 		push_swap_deinit(&a, &b);
 		return (0);
 	}
-//	push_swap_print("Init", a, b);
 	while(get_next_line(0, &com) > 0)
 	{
 		if (com[0] == '\0')
