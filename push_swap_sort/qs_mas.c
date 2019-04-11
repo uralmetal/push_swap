@@ -34,3 +34,30 @@ void qs(int *s_arr, int first, int last)
 		qs(s_arr, left, last);
 	}
 }
+
+int		*bubble_sort(int *array, int array_size)
+{
+	int i = 0;
+	int buf;
+	char swap_cnt = 0;
+
+	if (array_size == 0)
+		return (0);
+	while (i < array_size)
+	{
+		if (i + 1 != array_size && array[i] > array[i + 1])
+		{
+			buf = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = buf;
+			swap_cnt = 1;
+		}
+		i++;
+		if (i == array_size && swap_cnt == 1)
+		{
+			swap_cnt = 0;
+			i = 0;
+		}
+	}
+	return (array);
+}

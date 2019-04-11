@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 10:44:30 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/10 16:40:07 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/11 16:33:23 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int 	qs_move_b(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 	end = *size;
 	while (i < end)
 	{
-		if (FIRST(b) >= ref_value)
+		if (FIRST(b) > ref_value)
 		{
 			PA(debug_level)
 			*size -= 1;
@@ -54,7 +54,7 @@ int 	qs_move_b_rev(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 	while (i < end)
 	{
 		RRB(debug_level)
-		if (FIRST(b) >= ref_value)
+		if (FIRST(b) > ref_value)
 		{
 			PA(debug_level)
 			*size -= 1;
@@ -102,7 +102,87 @@ void	sort_3_b(t_int_stack *a, t_int_stack *b, int debug_level)
 
 void	sort_4_b(t_int_stack *a, t_int_stack *b, int debug_level)
 {
+	int min;
+	int max;
+	int size_a;
+	int size_b;
 
+	min = search_min(b, 4);
+	max = search_max(b, 4);
+
+	if (FIRST(b) == min)
+	{
+		PA(debug_level);
+		RA(debug_level);
+		sort_3_b(a, b, debug_level);
+	}
+	else if (FIRST(b) == max)
+	{
+		PA(debug_level);
+		sort_3_b(a, b, debug_level);
+		RA(debug_level);
+	}
+	else
+	{
+		PA(debug_level);
+		PA(debug_level);
+		size_a = 2;
+		size_b = 2;
+		{
+			if (FIRST(a) > SECOND(a) && FIRST(b) > SECOND(b))
+				SS(debug_level);
+			if (FIRST(a) > SECOND(a))
+				SA(debug_level);
+			if (FIRST(b) > SECOND(b))
+				SB(debug_level);
+		}
+		if (FIRST(a) == min)
+		{
+			RA(debug_level);
+			size_a--;
+		}
+		else if (FIRST(b) == min)
+		{
+			PA(debug_level);
+			RA(debug_level);
+			size_b--;
+		}
+		if (size_a == 1)
+		{
+			if (FIRST(a) == max)
+			{
+				sort_2_b(a, b, debug_level);
+				RA(debug_level);
+			}
+			else
+			{
+				PA(debug_level);
+				sort_2_a(a, b, debug_level);
+				PA(debug_level);
+				RA(debug_level);
+			}
+		}
+		else if (size_b == 1)
+		{
+			if (FIRST(b) == max)
+			{
+				sort_2_a(a, b, debug_level);
+				PA(debug_level);
+				RA(debug_level);
+			}
+			else
+			{
+				PA(debug_level);
+				sort_2_a(a, b, debug_level);
+				RA(debug_level);
+			}
+		}
+		else
+		{
+			printf("blet\n");
+			exit(5);
+		}
+	}
 }
 
 void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
@@ -112,14 +192,16 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	t_int_stack *rev_number;
 	int num_b;
 	int i;
+	int rev;
 
 	count = 0;
 	//end
-	if (size <= 3)
+
+	if (size <= 4)
 	{
 		if (size == 4)
 			sort_4_b(a, b, debug_level);
-		if (size == 3)
+		else if (size == 3)
 			sort_3_b(a, b, debug_level);
 		else if (size == 2)
 			sort_2_b(a, b, debug_level);
@@ -130,16 +212,17 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		}
 		return ;
 	}
+	rev = pre_sort_b(a, b, debug_level, &size);
 	move_number = stack_init();
 	rev_number = stack_init();
-	while (size > 3)
+	while (size > 4)
 	{
 		med = get_aver_med(b, 0, size);
 		i = size;
 		num_b = qs_move_b(a, b, med, &size, debug_level);
 		stack_put(move_number, i - size);
 		stack_put(rev_number, num_b);
-		if (size > 3)
+		if (size > 4)
 		{
 			med = get_aver_med(b, b->size - size - 1, b->size - 1);
 			i = size;
@@ -166,6 +249,11 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	{
 		num_b = stack_pull(move_number);
 		qs_sort_a(a, b, num_b, debug_level);
+	}
+	while (rev > 0)
+	{
+		RA(debug_level);
+		rev--;
 	}
 	stack_deinit(&rev_number);
 	stack_deinit(&move_number);

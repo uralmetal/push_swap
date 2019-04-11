@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 project(push_swap C)
 
 set(CMAKE_C_STANDARD 99)
-#set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+set(CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
 include_directories(.)
 include_directories(./get_next_line)

@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 11:35:22 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/05 19:48:05 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/11 13:14:07 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ void 	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level);
 //					  int debug_level);
 void 	hui_sort(t_int_stack *a, t_int_stack *b, int num, int debug_level);
 void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level);
+int search_max(t_int_stack *stack, unsigned int len);
+int search_min(t_int_stack *stack, unsigned int len);
+void	sort_2_a(t_int_stack *a, t_int_stack *b, int debug_level);
+void	sort_2_b(t_int_stack *a, t_int_stack *b, int debug_level);
+int		pre_sort_a(t_int_stack *a, t_int_stack *b, int debug_level, int *size);
+int		pre_sort_b(t_int_stack *a, t_int_stack *b, int debug_level, int *size);
 #endif //_PUSH_SWAP_SORT_H

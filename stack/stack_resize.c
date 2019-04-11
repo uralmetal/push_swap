@@ -20,7 +20,7 @@ int		stack_resize(t_int_stack *stack, unsigned int new_size)
 		return (0);
 	if (stack->size == new_size)
 		return (1);
-	CH_NULL(temp = (int*)malloc(sizeof(int) * new_size));
+	CH_NULL(temp = (int*)ft_memalloc(sizeof(int) * new_size));
 	ft_memcpy(temp, stack->arr, sizeof(int) * ((new_size > stack->size) ?
 	(stack->size) : (new_size)));
 	ft_memdel((void**)&(stack->arr));
