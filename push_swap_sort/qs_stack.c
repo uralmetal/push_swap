@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 15:39:48 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/11 16:53:18 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/12 18:26:26 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int 	get_aver_med(t_int_stack *stack, int begin, int end)
 		sum += stack->arr[INDEX(i, stack)];
 		if (stack->arr[INDEX(i, stack)] == 0)
 			nul = 1;
+//		printf("%i ", stack->arr[INDEX(i, stack)]);
 		i++;
 	}
 	if (nul == 0)
 		med = (int)(sum / (end - begin));
 	else
 		med = (int)(sum / (end - begin - 1));
+//	printf("\nmed = %i\n", med);
 	return (med);
 }
 
@@ -92,6 +94,8 @@ int		pre_sort_a(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
 	while (moved && *size > 0)
 	{
 		moved = 0;
+		if (a->size > 1 && (LAST(a) + 1) == SECOND(a))
+			SA(debug_level);
 		if ((LAST(a) + 1) == FIRST(a))
 		{
 			moved = 1;
@@ -115,6 +119,8 @@ int		pre_sort_b(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
 	while (moved && *size > 0)
 	{
 		moved = 0;
+		if (b->size > 2 && (LAST(a) + 1) == SECOND(b))
+			SB(debug_level);
 		if ((LAST(a) + 1) == FIRST(b))
 		{
 			moved = 1;
@@ -123,6 +129,8 @@ int		pre_sort_b(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
 			RA(debug_level);
 			continue ;
 		}
+		if (b->size > 2 && (LAST(a) + *size) == FIRST(b))
+			SB(debug_level);
 		if ((LAST(a) + *size) == FIRST(b))
 		{
 			moved = 1;

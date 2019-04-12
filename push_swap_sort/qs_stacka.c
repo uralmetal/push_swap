@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 10:44:30 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/11 16:31:56 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:08:45 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int count;
 
 int 	qs_move_a(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
-		int debug_level)
+				 int debug_level)
 {
 	int i;
 	int ret;
@@ -42,7 +42,7 @@ int 	qs_move_a(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 }
 
 int 	qs_move_a_rev(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
-				 int debug_level)
+					 int debug_level)
 {
 	int i;
 	int ret;
@@ -149,8 +149,6 @@ void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	int rev;
 
 	count = 0;
-	//end
-
 	if (size <= 4)
 	{
 		if (size == 4)
@@ -178,7 +176,7 @@ void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		stack_put(rev_number, num_b);
 		if (size > 4)
 		{
-			med = get_aver_med(a, a->size - size - 1, a->size - 1);
+			med = get_aver_med(a, a->size - size, a->size);
 			i = size;
 			num_b = qs_move_a_rev(a, b, med, &size, debug_level);
 			stack_put(move_number, i - size);
@@ -196,6 +194,7 @@ void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		RRA(debug_level);
 		i++;
 	}
+//	printf("size_a = %i\n", size);
 	qs_sort_a(a, b, size, debug_level); // handle 3 <= elements
 	if (debug_level == 2)
 		stack_print(*move_number);

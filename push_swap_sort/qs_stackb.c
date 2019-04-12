@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 10:44:30 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/11 16:33:23 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/12 20:04:05 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int count;
 
 int 	qs_move_b(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
-		int debug_level)
+		int *sort, int debug_level)
 {
 	int i;
 	int ret;
@@ -24,9 +24,19 @@ int 	qs_move_b(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 	i = 0;
 	ret = 0;
 	end = *size;
+	*sort = 0;
 	while (i < end)
 	{
-		if (FIRST(b) > ref_value)
+//		if (b->size > 2 && (LAST(a) + 1) == SECOND(b))
+//			SB(debug_level);
+		if ((LAST(a) + 1) == FIRST(b))
+		{
+			*size -= 1;
+			*sort += 1;
+			PA(debug_level);
+			RA(debug_level);
+		}
+		else if (FIRST(b) > ref_value)
 		{
 			PA(debug_level)
 			*size -= 1;
@@ -42,7 +52,7 @@ int 	qs_move_b(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 }
 
 int 	qs_move_b_rev(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
-				 int debug_level)
+				 int *sort, int debug_level)
 {
 	int i;
 	int ret;
@@ -51,10 +61,18 @@ int 	qs_move_b_rev(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 	i = 0;
 	ret = 0;
 	end = *size;
+	*sort = 0;
 	while (i < end)
 	{
 		RRB(debug_level)
-		if (FIRST(b) > ref_value)
+		if ((LAST(a) + 1) == FIRST(b))
+		{
+			*size -= 1;
+			*sort += 1;
+			PA(debug_level);
+			RA(debug_level);
+		}
+		else if (FIRST(b) > ref_value)
 		{
 			PA(debug_level)
 			*size -= 1;
@@ -184,7 +202,20 @@ void	sort_4_b(t_int_stack *a, t_int_stack *b, int debug_level)
 		}
 	}
 }
+/*
+void	sort_5_b(t_int_stack *a, t_int_stack *b, int debug_level)
+{
+	int min;
+	int max;
+	int size_a;
+	int size_b;
 
+	min = search_min(b, 5);
+	max = search_max(b, 5);
+	if ()
+
+}
+*/
 void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 {
 	int med;
@@ -193,6 +224,7 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	int num_b;
 	int i;
 	int rev;
+	int sort;
 
 	count = 0;
 	//end
@@ -219,15 +251,15 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	{
 		med = get_aver_med(b, 0, size);
 		i = size;
-		num_b = qs_move_b(a, b, med, &size, debug_level);
-		stack_put(move_number, i - size);
+		num_b = qs_move_b(a, b, med, &size, &sort, debug_level);
+		stack_put(move_number, i - size - sort);
 		stack_put(rev_number, num_b);
 		if (size > 4)
 		{
-			med = get_aver_med(b, b->size - size - 1, b->size - 1);
+			med = get_aver_med(b, b->size - size, b->size);
 			i = size;
-			num_b = qs_move_b_rev(a, b, med, &size, debug_level);
-			stack_put(move_number, i - size);
+			num_b = qs_move_b_rev(a, b, med, &size, &sort, debug_level);
+			stack_put(move_number, i - size - sort);
 			stack_put(rev_number, num_b);
 		}
 	}
@@ -242,6 +274,7 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		RRB(debug_level);
 		i++;
 	}
+//	printf("size_b = %i\n", size);
 	qs_sort_b(a, b, size, debug_level); // handle 3 <= elements
 	if (debug_level == 2)
 		stack_print(*move_number);
