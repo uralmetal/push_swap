@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 15:39:48 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/12 18:26:26 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/15 10:27:22 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int 	qs_move(t_int_stack *a, t_int_stack *b, int ref_value, int debug_level)
 	i = 0;
 	ret = 0;
 	size = a->size;
-	while (i < size && a->size != 3)
+//	printf("opt = %i\n", opt);
+	while (i < size && a->size != 3 && (ret < (int)(size - ref_value)))
 	{
 		if (FIRST(a) >= ref_value && FIRST(a) > 2)
 		{
@@ -156,12 +157,17 @@ void	qs_sort_stack(t_int_stack *a, t_int_stack *b, int debug_level)
 	while (a->size > 3)
 	{
 		med = get_aver_med(a, 0, a->size);
+//		printf("med = %i\n", med);
+		if (med > 40)
+			med = med + med / 4;
 		number = qs_move(a, b, med, debug_level);
+//		printf("number = %i\n", number);
 		stack_put(move_number, number);
 	}
 	sort_3_elem(a, b, debug_level);
 	if (debug_level == 2)
 		stack_print(*move_number);
+//	stack_print(*move_number);
 	while (move_number->size != 0)
 	{
 		number = stack_pull(move_number);
