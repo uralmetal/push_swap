@@ -6,15 +6,15 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:18:02 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/15 10:24:21 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:27:57 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_lib/push_swap_lib.h"
-#include "push_swap_sort/push_swap_sort.h"
+#include "push_swap_lib.h"
+#include "push_swap_sort.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include "get_next_line/get_next_line.h"
+#include "get_next_line.h"
 
 
 static void selection(int *array, int length)
@@ -38,7 +38,7 @@ int		main(int argc, char **argv)
 {
 	t_int_stack *a;
 	t_int_stack *b;
-	int debug_level = 1;
+	int debug_level = 2;
 	int *sort;
 	unsigned int i;
 	unsigned int j;
@@ -51,7 +51,6 @@ int		main(int argc, char **argv)
 		push_swap_deinit(&a, &b);
 		return (0);
 	}
-	//indexing
 	sort = (int*)malloc(sizeof(int) * a->size);
 	ft_memcpy(sort, a->arr, sizeof(int) * a->size);
 	selection(sort, a->size);
@@ -70,10 +69,9 @@ int		main(int argc, char **argv)
 		}
 		i++;
 	}
-	//
 	if (debug_level == 2)
 		push_swap_print("Init", a, b);
-	push_swap_sort(a, b, debug_level);
+	qs_sort_stack(a,b, debug_level);
 	if (debug_level == 2)
 		push_swap_print("Sort", a, b);
 	free(sort);

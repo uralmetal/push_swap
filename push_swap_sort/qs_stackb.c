@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 10:44:30 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/15 09:32:42 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/16 15:17:09 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int 	qs_move_b(t_int_stack *a, t_int_stack *b, int ref_value, int *size,
 	*sort = 0;
 	while (i < end)
 	{
-//		if (b->size > 2 && (LAST(a) + 1) == SECOND(b))
-//			SB(debug_level);
 		if ((LAST(a) + 1) == FIRST(b))
 		{
 			*size -= 1;
@@ -128,6 +126,10 @@ void	sort_4_b(t_int_stack *a, t_int_stack *b, int debug_level)
 	min = search_min(b, 4);
 	max = search_max(b, 4);
 
+	if ((SECOND(b) == min) && (FIRST(b) != max))
+		SB(debug_level);
+	if ((SECOND(b) == max) && (FIRST(b) != min))
+		SB(debug_level);
 	if (FIRST(b) == min)
 	{
 		PA(debug_level);
@@ -195,27 +197,9 @@ void	sort_4_b(t_int_stack *a, t_int_stack *b, int debug_level)
 				RA(debug_level);
 			}
 		}
-		else
-		{
-			printf("blet\n");
-			exit(5);
-		}
 	}
 }
-/*
-void	sort_5_b(t_int_stack *a, t_int_stack *b, int debug_level)
-{
-	int min;
-	int max;
-	int size_a;
-	int size_b;
 
-	min = search_min(b, 5);
-	max = search_max(b, 5);
-	if ()
-
-}
-*/
 void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 {
 	int med;
@@ -227,8 +211,6 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 	int sort;
 
 	count = 0;
-	//end
-
 	if (size <= 4)
 	{
 		if (size == 4)
@@ -269,12 +251,11 @@ void	qs_sort_b(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		stack_print(*move_number);
 	i = 0;
 	num_b = stack_pull(rev_number);
-	while (i < num_b && (b->size > 3))
+	while (i < num_b && (b->size > 4))
 	{
 		RRB(debug_level);
 		i++;
 	}
-//	printf("size_b = %i\n", size);
 	qs_sort_b(a, b, size, debug_level); // handle 3 <= elements
 	if (debug_level == 2)
 		stack_print(*move_number);

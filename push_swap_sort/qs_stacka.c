@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 10:44:30 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/15 09:32:26 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/15 16:41:09 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	sort_4_a(t_int_stack *a, t_int_stack *b, int debug_level)
 	//min first or second
 	{
 		if (SECOND(a) == min)
-		SA(debug_level);
+			SA(debug_level);
 		if (FIRST(a) == min)
 		{
 			RA(debug_level);
@@ -203,18 +203,12 @@ void	qs_sort_a(t_int_stack *a, t_int_stack *b, int size, int debug_level)
 		num_b = stack_pull(move_number);
 		qs_sort_b(a, b, num_b, debug_level);
 	}
-	num_b = rev;
 	while (rev > 0)
 	{
 		PA(debug_level);
 		RA(debug_level);
 		rev--;
 	}
-//	while (num_b > 0)
-//	{
-//		RA(debug_level);
-//		num_b--;
-//	}
 	stack_deinit(&rev_number);
 	stack_deinit(&move_number);
 }

@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/31 15:39:48 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/15 10:27:22 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/16 15:00:48 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ int 	get_aver_med(t_int_stack *stack, int begin, int end)
 		sum += stack->arr[INDEX(i, stack)];
 		if (stack->arr[INDEX(i, stack)] == 0)
 			nul = 1;
-//		printf("%i ", stack->arr[INDEX(i, stack)]);
 		i++;
 	}
 	if (nul == 0)
 		med = (int)(sum / (end - begin));
 	else
 		med = (int)(sum / (end - begin - 1));
-//	printf("\nmed = %i\n", med);
 	return (med);
 }
 
@@ -48,16 +46,15 @@ int 	qs_move(t_int_stack *a, t_int_stack *b, int ref_value, int debug_level)
 	i = 0;
 	ret = 0;
 	size = a->size;
-//	printf("opt = %i\n", opt);
-	while (i < size && a->size != 3 && (ret < (int)(size - ref_value)))
+	while (i < size && a->size != 4 && (ret < (int)(size - ref_value)))
 	{
-		if (FIRST(a) >= ref_value && FIRST(a) > 2)
+		if (FIRST(a) >= ref_value && FIRST(a) > 3)
 		{
 			PB(debug_level)
 			ret++;
 		}
 		else
-			RA(debug_level)
+			RA(debug_level);
 		i++;
 	}
 	return (ret);
@@ -81,6 +78,52 @@ void	sort_3_elem(t_int_stack *a, t_int_stack *b, int debug_level)
 		else
 			SA(debug_level)
 	}
+}
+
+void	sort_3_elem_2(t_int_stack *a, t_int_stack *b, int debug_level)
+{
+	if (FIRST(a) == 1 && SECOND(a) == 3)
+	SA(debug_level)
+	if (FIRST(a) == 3)
+	{
+		if(SECOND(a) == 1)
+		RA(debug_level)
+		else
+		SA(debug_level)
+	}
+	if (FIRST(a) == 2)
+	{
+		if (SECOND(a) == 3)
+		RRA(debug_level)
+		else
+		SA(debug_level)
+	}
+}
+
+void	sort_4_elem(t_int_stack *a, t_int_stack *b, int debug_level)
+{
+	if (FIRST(a) == 0)
+	{
+		PB(debug_level);
+		sort_3_elem_2(a, b, debug_level);
+		PA(debug_level);
+		return ;
+	}
+	if (FIRST(a) == 3)
+	{
+		PB(debug_level);
+		sort_3_elem(a, b, debug_level);
+		PA(debug_level);
+		RA(debug_level);
+		return ;
+	}
+	if (SECOND(a) == 0 || SECOND(a) == 3)
+	{
+		SA(debug_level);
+	}
+	else if (LAST(a) == 0 || LAST(a) == 3)
+		RRA(debug_level);
+	sort_4_elem(a, b, debug_level);
 }
 
 int		pre_sort_a(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
@@ -120,7 +163,7 @@ int		pre_sort_b(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
 	while (moved && *size > 0)
 	{
 		moved = 0;
-		if (b->size > 2 && (LAST(a) + 1) == SECOND(b))
+		if (b->size > 1 && (LAST(a) + 1) == SECOND(b))
 			SB(debug_level);
 		if ((LAST(a) + 1) == FIRST(b))
 		{
@@ -130,7 +173,7 @@ int		pre_sort_b(t_int_stack *a, t_int_stack *b, int debug_level, int *size)
 			RA(debug_level);
 			continue ;
 		}
-		if (b->size > 2 && (LAST(a) + *size) == FIRST(b))
+		if (b->size > 1 && (LAST(a) + *size) == SECOND(b))
 			SB(debug_level);
 		if ((LAST(a) + *size) == FIRST(b))
 		{
@@ -154,20 +197,22 @@ void	qs_sort_stack(t_int_stack *a, t_int_stack *b, int debug_level)
 	move_number = stack_init(); //ToDo: check sort!!!
 	if (a->size < 2)
 		return ;
-	while (a->size > 3)
+	while (a->size > 4)
 	{
 		med = get_aver_med(a, 0, a->size);
-//		printf("med = %i\n", med);
-		if (med > 40)
-			med = med + med / 4;
+		if (med == 50)
+			med = 62;
+		if (med == 31)
+			med = 37;
 		number = qs_move(a, b, med, debug_level);
-//		printf("number = %i\n", number);
 		stack_put(move_number, number);
 	}
-	sort_3_elem(a, b, debug_level);
+	if (a->size == 4)
+		sort_4_elem(a, b, debug_level);
+	else
+		sort_3_elem(a, b, debug_level);
 	if (debug_level == 2)
 		stack_print(*move_number);
-//	stack_print(*move_number);
 	while (move_number->size != 0)
 	{
 		number = stack_pull(move_number);

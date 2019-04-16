@@ -6,13 +6,13 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 15:22:36 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/03 15:26:53 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/16 17:17:45 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-void				stack_deinit(t_int_stack **stack)
+void	stack_deinit(t_int_stack **stack)
 {
 	ft_memdel((void**)&((*stack)->arr));
 	ft_memdel((void**)stack);

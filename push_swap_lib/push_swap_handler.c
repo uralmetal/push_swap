@@ -6,13 +6,13 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:17:41 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/02/04 11:27:09 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/16 16:31:44 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int 	push_swap_handler(const char *command, t_int_stack *a, t_int_stack *b)
+int		push_swap_handler(const char *command, t_int_stack *a, t_int_stack *b)
 {
 	if (a == NULL || a->arr == NULL || b == NULL || b->arr == NULL)
 		return (0);

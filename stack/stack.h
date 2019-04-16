@@ -40,9 +40,9 @@ int					stack_put(t_int_stack *stack, int value);
 int					stack_pull(t_int_stack *stack);
 int					stack_rotate(t_int_stack *stack);
 int					stack_rev_rotate(t_int_stack *stack);
-int 				stack_swap(t_int_stack *stack);
+int					stack_swap(t_int_stack *stack);
 void				stack_print(t_int_stack stack);
-t_int_stack 		*stack_copy(t_int_stack **dst, t_int_stack *src);
+t_int_stack			*stack_copy(t_int_stack **dst, t_int_stack *src);
 void				stack_deinit(t_int_stack **stack);
 
 #endif
