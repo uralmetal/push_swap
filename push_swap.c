@@ -6,7 +6,7 @@
 /*   By: rwalder- <rwalder-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 18:18:02 by rwalder-          #+#    #+#             */
-/*   Updated: 2019/04/16 16:27:57 by rwalder-         ###   ########.fr       */
+/*   Updated: 2019/04/17 09:44:34 by rwalder-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,35 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-
-static void selection(int *array, int length)
+static void	selection(int *array, int length)
 {
-	int max, i, temp;
+	int	max;
+	int	i;
+	int	temp;
+
 	while (length > 0)
 	{
 		max = 0;
-		for (i = 1; i < length; i++)
+		i = 1;
+		while (i < length)
+		{
 			if (array[i] > array[max])
 				max = i;
-
-		temp = array[length-1];
-		array[length-1] = array[max];
+			i++;
+		}
+		temp = array[length - 1];
+		array[length - 1] = array[max];
 		array[max] = temp;
 		length--;
 	}
 }
 
-int		main(int argc, char **argv)
+static void	indexing(t_int_stack *a)
 {
-	t_int_stack *a;
-	t_int_stack *b;
-	int debug_level = 2;
-	int *sort;
-	unsigned int i;
-	unsigned int j;
+	int				*sort;
+	unsigned int	i;
+	unsigned int	j;
 
-	if (argc <= 1)
-		return (0);
-	if (push_swap_init(argc, argv, &a, &b) == 0)
-	{
-		ft_putendl_fd("Error", 2);
-		push_swap_deinit(&a, &b);
-		return (0);
-	}
 	sort = (int*)malloc(sizeof(int) * a->size);
 	ft_memcpy(sort, a->arr, sizeof(int) * a->size);
 	selection(sort, a->size);
@@ -69,12 +63,30 @@ int		main(int argc, char **argv)
 		}
 		i++;
 	}
+	free(sort);
+}
+
+int			main(int argc, char **argv)
+{
+	t_int_stack	*a;
+	t_int_stack	*b;
+	int			debug_level;
+
+	debug_level = 1;
+	if (argc <= 1)
+		return (0);
+	if (push_swap_init(argc, argv, &a, &b) == 0)
+	{
+		ft_putendl_fd("Error", 2);
+		push_swap_deinit(&a, &b);
+		return (0);
+	}
+	indexing(a);
 	if (debug_level == 2)
 		push_swap_print("Init", a, b);
-	qs_sort_stack(a,b, debug_level);
+	qs_sort_stack(a, b, debug_level);
 	if (debug_level == 2)
 		push_swap_print("Sort", a, b);
-	free(sort);
 	push_swap_deinit(&a, &b);
 	return (0);
 }
